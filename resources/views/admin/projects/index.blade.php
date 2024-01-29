@@ -49,5 +49,9 @@
             </div>
         @endif
         @include('admin.projects.partials.delete-modal')
+        <div>
+            {{ $projects->links() }}
+          </div>
+  
     </div>
 @endsection

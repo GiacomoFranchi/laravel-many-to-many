@@ -14,4 +14,8 @@ class Tecnology extends Model
         $this->attributes['tecnologia'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    public function projects(){
+        return $this->belongsToMany(Project::class);
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,9 +19,17 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::all();
+        //Mostro 5 project per pagina
+        $perPage = 5;
+        if($request->per_page){
+            $perPage= $request->per_page;
+        }
+        
+        $projects = Project::all(); //
+        $projects=Project::paginate($perPage);
+        
         return view('admin.projects.index', compact('projects'));
     }
 

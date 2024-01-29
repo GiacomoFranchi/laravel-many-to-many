@@ -8,6 +8,16 @@
                 {{-- Titolo --}}
                 <h5 class="card-title">{{$project->title}}</h5>
 
+                {{-- Tecnologia --}}
+                <div class="my-2">
+                    Tecnologia Usata:
+                    @foreach ($project->tecnologies as $tecnology)
+                        <span class="badge" style="background-color: {{ $tecnology->hex_color }}">
+                            {{$tecnology->tecnologia}}
+                        </span>
+                    @endforeach
+
+                </div>
                 {{-- Tipologia --}}
                 <div>
                     Tipologia: {{$project->type ? $project->type->tipologia : 'nessuna tipologia associata'}}
