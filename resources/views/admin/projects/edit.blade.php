@@ -34,7 +34,14 @@
                             value="{{ old('title', $project->title) }}">
                     </div>
 
-                     {{-- Immagine --}}
+                    {{--Tecnologia--}}
+                    <div class="mb-3">
+                        @foreach ($tecnologies as $tecnology)
+                            <label for="tecnology.{{$tecnology->id}}">{{$tecnology->tecnologia}}</label>
+                            <input type="checkbox" @checked($project->tecnologies->contains($tecnology)) id="tecnology.{{$tecnology->id}}" value="{{$tecnology->id}}" name="tecnologies[]">
+                        @endforeach
+                    </div>
+                    {{-- Immagine --}}
                     <div class="mb-3">
                         <label for="img">Immagine</label>
                         <input type="file" class="form-control" id="img" name="img">

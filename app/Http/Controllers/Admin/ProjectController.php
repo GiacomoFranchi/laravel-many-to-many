@@ -93,7 +93,8 @@ class ProjectController extends Controller
     {
         //$project = Project::where('slug', $project->slug)->first();
         $types= Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $tecnologies= Tecnology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'tecnologies'));
     }
 
     /**
@@ -119,6 +120,13 @@ class ProjectController extends Controller
 
 
         $project->update($form_data);
+
+        if($request->has('tecnologies')){
+            $project->tecnologies()->sync($request->tecnologies);
+        } else{
+            $project->tecnologies()->sync([]);
+        }
+
         return redirect()->route('admin.projects.show', ['project' => $project->slug]);
     }
 
